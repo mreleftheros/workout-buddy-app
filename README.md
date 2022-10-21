@@ -1,2 +1,1 @@
-#Easily manage your workout sessions
-#Fullstack app with Solidjs NodeJs ExpressJs and Mongodb
+Fullstack Mern project with CSR and routing and auth
