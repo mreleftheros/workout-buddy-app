@@ -1,18 +1,16 @@
-import { Title } from "solid-start";
-import Counter from "~/components/Counter";
-export default function Home() {
-  return (
-    <main>
-      <Title>Hello World!!</Title>
-      <h1>Hello world!!!!</h1>
-      <Counter />
-      <p>
-        Visit{" "}
-        <a href="https://start.solidjs.com" target="_blank">
-          start.solidjs.com
-        </a>{" "}
-        to learn how to build SolidStart apps.
-      </p>
-    </main>
-  );
+import { A } from "solid-start";
+
+const index = () => {
+
+  return <section className="hero">
+    <h1 class="hero-title">Welcome to <strong>Workout Buddy App</strong></h1>
+    <h2 class="hero-subtitle">Track and manage your workout sessions easily and don't lose a single workout ever again.</h2>
+    <div className="hero-cta">
+      <A class="hero-cta-btn active" href="/workouts">View Workouts</A>
+      <span>or</span>
+      <A class="hero-cta-btn" href="/signup">Signup</A>
+    </div>
+  </section>
 }
+
+export default index;
