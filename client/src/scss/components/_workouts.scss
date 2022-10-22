@@ -6,8 +6,9 @@
   &-title {
     font-size: 3.5rem;
     width: max-content;
-    padding: 0 1rem .25rem;
-    border-bottom: solid $primary 1.5px;
+    padding: 0 1rem;
+    border-left: solid $primaryDark 1.5px;
+    border-right: solid $primaryDark 1.5px;
   }
 
   &-list {
@@ -15,7 +16,7 @@
   }
 
   &-item:not(:first-of-type) {
-    border: $primary solid;
+    border: $primaryDark solid;
     margin: 1rem 0 2.5rem;
   }
 
