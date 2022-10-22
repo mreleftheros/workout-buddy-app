@@ -45,6 +45,8 @@ class Workout {
       error = "Data Validation failed.";
     }
 
+    data.done = false;
+
     return { errors, error, data };
   }
 

@@ -22,6 +22,7 @@ export default function Root() {
         <Title>Workout Buddy App</Title>
         <Meta charset="utf-8" />
         <Meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="shortcut icon" href="#" type="image/x-icon" />
       </Head>
       <Body>
         <Suspense>

@@ -1,10 +1,12 @@
 @use "./abstract/" as *;
- 
+
 :root {
   font-size: 62.5%;
 }
 
-* {
+*,
+*::before,
+*::after {
   margin: 0;
   padding: 0;
   box-sizing: inherit;
@@ -20,7 +22,9 @@ body {
   grid-template-rows: 10vh 1fr 5vh;
 }
 
-a, span, label {
+a,
+span,
+label {
   display: inline-block;
 }
 
@@ -43,4 +47,10 @@ ul {
 
 .main {
   padding-top: 2.5rem;
+
+  @include mq(768px) {
+    width: 95%;
+    max-width: 120rem;
+    margin: 0 auto;
+  }
 }

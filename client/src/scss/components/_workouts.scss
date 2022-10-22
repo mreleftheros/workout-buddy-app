@@ -1,0 +1,84 @@
+@use "../abstract/" as *;
+
+.workouts {
+  height: 100%;
+
+  &-title {
+    font-size: 3.5rem;
+    width: max-content;
+    padding: 0 1rem .25rem;
+    border-bottom: solid $primary 1.5px;
+  }
+
+  &-list {
+    margin-top: 1.5rem;
+  }
+
+  &-item:not(:first-of-type) {
+    border: $primary solid;
+    margin: 1rem 0 2.5rem;
+  }
+
+  &-item:first-of-type {
+    margin: 1rem 0 .5rem;
+    border-bottom: $primaryDark solid;
+    color: $black;
+  }
+
+  &-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    border-radius: .25rem;
+    color: $blackLight;
+
+    &.done {
+      background-color: $primaryLight;
+    }
+
+    &-details {
+      flex-basis: 50rem;
+      display: flex;
+      align-items: center;
+    }
+
+    &-name {
+      flex: 1 1 50rem;
+      color: $black;
+    }
+
+    &-reps {
+      flex: 1 1 15rem;
+    }
+
+    &-load {
+      flex: 1 1 15rem;
+    }
+
+    &-tools {
+      display: flex;
+      align-items: center;
+      justify-content: space-around;
+      gap: 5rem;
+    }
+
+    &-tool {
+      border: 0;
+      background-color: transparent;
+      
+      font-size: 2.5rem;
+      cursor: pointer;
+      border-radius: .25rem;
+
+      &.toggle {
+       transform: translateY(-.25rem);
+      }
+
+      &.trash {
+        color: $error;
+      }
+
+      
+    }
+  }
+}
