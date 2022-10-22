@@ -1,9 +1,7 @@
+import WorkoutForm from "~/components/WorkoutForm";
+
 const add = () => {
-
-
-  return <section class="add-workout">
-    <h1 class="add-workout-title">hello!</h1>
-  </section>
+  return <WorkoutForm name="New Workout" />
 }
 
 export default add;

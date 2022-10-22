@@ -11,6 +11,32 @@
     border-right: solid $primaryDark 1.5px;
   }
 
+  &-loading {
+    font-size: 2rem;
+    margin: 1.5rem 0;
+  }
+
+  &-error {
+    color: $error;
+    font-size: 2rem;
+    margin: 1.5rem 0;
+
+    &-btn {
+      border: none;
+      font-size: 2rem;
+      margin: 0 .25rem;
+      background-color: $secondary;
+      cursor: pointer;
+      border-radius: .25rem;
+      padding: 1.25rem 1rem;
+      transition: transform .3s ease-out;
+
+      &:hover {
+        transform: scale(0.95);
+      }
+    }
+  }
+
   &-list {
     margin-top: 1.5rem;
   }
@@ -66,20 +92,20 @@
     &-tool {
       border: 0;
       background-color: transparent;
-      
+
       font-size: 2.5rem;
       cursor: pointer;
       border-radius: .25rem;
 
       &.toggle {
-       transform: translateY(-.25rem);
+        transform: translateY(-.25rem);
       }
 
       &.trash {
         color: $error;
       }
 
-      
+
     }
   }
 }

@@ -19,7 +19,7 @@ exports.index_post = async (req, res) => {
 
     const { _id } = await Workout.set(data);
 
-    return res.status(201).json({ _id });
+    return res.status(201).json({ data: { _id, ...data } });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
