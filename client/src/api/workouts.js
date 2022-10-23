@@ -1,6 +1,9 @@
-export const getAllWorkouts = async () => (await fetch("http://localhost:5000/api/workouts")).json();
+export const get_workouts = async () => {
+  console.log("fetching workouts...");
+  return (await fetch("http://localhost:5000/api/workouts")).json();
+};
 
-export const addWorkout = async (obj) => {
+export const post_workout = async (obj) => {
   try {
     const res = await fetch("http://localhost:5000/api/workouts", {
       method: "POST",

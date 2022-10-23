@@ -14,6 +14,8 @@ import {
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import "./scss/index.scss";
+import AuthProvider from "./context/auth";
+import WorkoutProvider from "./context/workouts";
 
 export default function Root() {
   return (
@@ -27,13 +29,17 @@ export default function Root() {
       <Body>
         <Suspense>
           <ErrorBoundary>
-            <Header />
-            <main class="main">
-              <Routes>
-                <FileRoutes />
-              </Routes>
-            </main>
-            <Footer />
+            <AuthProvider>
+              <WorkoutProvider>
+                <Header />
+                <main class="main">
+                  <Routes>
+                    <FileRoutes />
+                  </Routes>
+                </main>
+                <Footer />
+              </WorkoutProvider>
+            </AuthProvider>
           </ErrorBoundary>
         </Suspense>
         <Scripts />

@@ -55,7 +55,7 @@ class Workout {
 
     if (!acknowledged) throw Error("Could not save workout to the database.");
 
-    return { _id: insertedId.toString() }
+    return { _id: insertedId.toString(), ...data };
   }
 
   static async getAll() {
@@ -91,7 +91,7 @@ class Workout {
       return { idError: true };
     }
 
-    const {acknowledged} = await col.deleteOne({ _id: getId(id) });
+    const { acknowledged } = await col.deleteOne({ _id: getId(id) });
     if (!acknowledged) throw Error("Could not delete workout from the database.");
 
     return {};

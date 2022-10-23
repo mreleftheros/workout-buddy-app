@@ -1,8 +1,10 @@
 import { batch } from "solid-js";
 import { createSignal, onMount } from "solid-js";
-import { addWorkout } from "~/api/workouts";
+import { post_workout } from "~/api/workouts";
+import { useWorkouts } from "~/context/workouts";
 
 const WorkoutForm = props => {
+  const { workouts, addWorkout } = useWorkouts();
   const [workout, setWorkout] = createSignal({ name: "", reps: null, load: null });
   const [loading, setLoading] = createSignal(false);
   const [errors, setErrors] = createSignal({
@@ -24,8 +26,7 @@ const WorkoutForm = props => {
 
     try {
       setLoading(true);
-      const { errors, error, data } = await addWorkout({ name: workout().name, reps: +workout().reps, load: +workout().load });
-      console.log(errors, error, data);
+      const { errors, error, data } = await post_workout({ name: workout().name, reps: +workout().reps, load: +workout().load });
 
       if (errors) {
         setErrors(prev => ({ ...prev, ...errors, error }))

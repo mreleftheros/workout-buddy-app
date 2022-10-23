@@ -1,9 +1,8 @@
-import { createResource } from "solid-js";
 import { A } from "solid-start";
-import { getAllWorkouts } from "~/api/workouts";
+import { useWorkouts } from "~/context/workouts";
 
 const index = () => {
-  const [workouts, { mutate, refetch }] = createResource(getAllWorkouts);
+  const { workouts } = useWorkouts();
 
   return <section className="workouts">
     <h1 class="workouts-title">Workouts List</h1>

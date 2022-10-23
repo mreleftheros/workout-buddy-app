@@ -4,6 +4,8 @@ exports.index_get = async (req, res) => {
   try {
     const result = await Workout.getAll();
 
+    if (!result) return res.status(404).json({ error: "Workouts not found." });
+
     return res.json(result);
   } catch (err) {
     return res.status(500).json({ error: err.message });
@@ -14,12 +16,12 @@ exports.index_post = async (req, res) => {
   try {
     const { error, errors, data } = Workout.validate(req.body);
     if (error) {
-      return res.status(400).json({ error, ...errors });
+      return res.status(400).json({ error, errors });
     }
 
-    const { _id } = await Workout.set(data);
+    const result = await Workout.set(data);
 
-    return res.status(201).json({ data: { _id, ...data } });
+    return res.status(201).json(result);
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
