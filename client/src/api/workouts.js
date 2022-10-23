@@ -1,6 +1,11 @@
 export const get_workouts = async () => {
-  console.log("fetching workouts...");
-  return (await fetch("http://localhost:5000/api/workouts")).json();
+  try {
+    const res = await fetch("http://localhost:5000/api/workouts");
+    const { data } = await res.json();
+    return data;
+  } catch (err) {
+    throw err;
+  }
 };
 
 export const post_workout = async (obj) => {
@@ -12,20 +17,20 @@ export const post_workout = async (obj) => {
       },
       body: JSON.stringify(obj)
     });
-
-    console.log(res);
-
-    if (!res.ok) throw new Error("Request failed.");
-
     const { error, errors, data } = await res.json();
 
-    if (errors) {
-      return { errors, error };
-    } else if (error) {
-      throw error;
-    }
+    return { error, errors, data };
+  } catch (err) {
+    throw err;
+  }
+}
 
-    return { data };
+export const delete_workout = async (id) => {
+  try {
+    const res = await fetch(`http://localhost:5000/api/workouts/${id}`, {
+      method: "DELETE"
+    });
+    return true;
   } catch (err) {
     throw err;
   }

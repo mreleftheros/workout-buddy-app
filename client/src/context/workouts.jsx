@@ -8,9 +8,11 @@ const WorkoutProvider = props => {
   const { auth } = useAuth();
   const [workouts, { mutate, refetch }] = createResource(auth, get_workouts);
 
-  const addWorkout = () => { };
+  const addWorkout = (obj) => mutate(prev => [obj, ...prev]);
 
-  return <WorkoutContext.Provider value={{ workouts, addWorkout }} >
+  const deleteWorkout = (id) => mutate(prev => prev.filter(w => w._id !== id));
+
+  return <WorkoutContext.Provider value={{ workouts, addWorkout, deleteWorkout }} >
     {props.children}
   </WorkoutContext.Provider>
 }

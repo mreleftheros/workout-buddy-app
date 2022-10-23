@@ -1,8 +1,19 @@
-import { A } from "solid-start";
+import { delete_workout } from "~/api/workouts";
 import { useWorkouts } from "~/context/workouts";
 
 const index = () => {
-  const { workouts } = useWorkouts();
+  const { workouts, deleteWorkout } = useWorkouts();
+
+  const handleDelete = async id => {
+    try {
+      const ok = await delete_workout(id);
+      if (ok) {
+        deleteWorkout(id);
+      }
+    } catch (err) {
+      return; //
+    }
+  }
 
   return <section className="workouts">
     <h1 class="workouts-title">Workouts List</h1>
@@ -34,10 +45,9 @@ const index = () => {
                   <h2 class="workouts-item-load">{w?.load}kg</h2>
                 </div>
                 <div className="workouts-item-tools">
-                  <A href={`/workouts/${w._id}`} class="workouts-item-tool edit">🔎</A>
                   <button class="workouts-item-tool toggle">{w?.done ? "❌" : "☑"}</button>
                   <button class="workouts-item-tool edit">🖊</button>
-                  <button class="workouts-item-tool trash">🗑</button>
+                  <button onClick={[handleDelete, w._id]} class="workouts-item-tool trash">🗑</button>
                 </div>
               </li>
             )}

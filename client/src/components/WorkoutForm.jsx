@@ -1,10 +1,10 @@
-import { batch } from "solid-js";
-import { createSignal, onMount } from "solid-js";
+import { createSignal, onMount, batch } from "solid-js";
+import { useNavigate } from "solid-start";
 import { post_workout } from "~/api/workouts";
 import { useWorkouts } from "~/context/workouts";
 
 const WorkoutForm = props => {
-  const { workouts, addWorkout } = useWorkouts();
+  const { addWorkout } = useWorkouts();
   const [workout, setWorkout] = createSignal({ name: "", reps: null, load: null });
   const [loading, setLoading] = createSignal(false);
   const [errors, setErrors] = createSignal({
@@ -16,6 +16,8 @@ const WorkoutForm = props => {
   let inputRef;
 
   onMount(() => inputRef.focus());
+
+  const navigate = useNavigate();
 
   const updateWorkout = ({ target }) => setWorkout(prev => ({ ...prev, [target.name]: target.value }));
 
@@ -31,15 +33,14 @@ const WorkoutForm = props => {
       if (errors) {
         setErrors(prev => ({ ...prev, ...errors, error }))
       } else if (data) {
-        // add data obj to context later
-        console.log(data);
+        addWorkout(data);
+        return navigate("/workouts");
       }
     } catch (err) {
       setErrors(prev => ({ ...prev, error: err.message }));
     } finally {
       batch(() => {
         setLoading(false);
-        setWorkout({ name: "", reps: null, load: null });
       })
     }
   }

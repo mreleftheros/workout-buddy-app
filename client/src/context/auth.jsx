@@ -1,16 +1,9 @@
-import { createEffect } from "solid-js";
 import { createContext, useContext, createSignal } from "solid-js";
 
 const AuthContext = createContext();
 
 const AuthProvider = props => {
-  const [auth, setAuth] = createSignal({ username: "Geo" });
-
-  createEffect(() => {
-    if (auth()) {
-      console.log("logged in");
-    }
-  })
+  const [auth, setAuth] = createSignal(true);
 
   return <AuthContext.Provider value={{ auth, setAuth }}>
     {props.children}

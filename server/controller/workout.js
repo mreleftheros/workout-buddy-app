@@ -6,7 +6,7 @@ exports.index_get = async (req, res) => {
 
     if (!result) return res.status(404).json({ error: "Workouts not found." });
 
-    return res.json(result);
+    return res.json({ data: result });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
@@ -21,7 +21,7 @@ exports.index_post = async (req, res) => {
 
     const result = await Workout.set(data);
 
-    return res.status(201).json(result);
+    return res.status(201).json({ data: result });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
@@ -35,7 +35,7 @@ exports.idParam_get = async (req, res) => {
       return res.status(404).json({ error: "Invalid id." });
     }
 
-    return res.json(result);
+    return res.json({ data: result });
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
