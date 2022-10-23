@@ -2,7 +2,7 @@ const { getCol, isValid, getId } = require("../config/db");
 const col = getCol("workouts");
 
 class Workout {
-  static validate(data) {
+  static validateOnSet(data) {
     let error = "";
     const errors = {}
     const len = Object.keys(data).length;
@@ -45,8 +45,6 @@ class Workout {
       error = "Data Validation failed.";
     }
 
-    data.done = false;
-
     return { errors, error, data };
   }
 
@@ -63,38 +61,46 @@ class Workout {
   }
 
   static async getById(id) {
-    if (!isValid(id)) {
-      return { idError: true };
-    }
-
     const result = await col.findOne({ _id: getId(id) });
-    return { result };
+    return result;
+  }
+
+  static validateOnUpdate(data) {
+    let error = "";
+    if ("name" in data && "reps" in data && "load" in data) {
+      const result = this.validateOnSet(data);
+      return result;
+    } else if (Object.keys(data).length === 1 && "done" in data) {
+      if (typeof done !== "boolean") {
+        error = "Invalid type.";
+        return { error, data };
+      }
+    } else {
+      error = "Invalid data.";
+      return { error, data };
+    }
+  }
+
+  static validateId(id) {
+    return isValid(id);
   }
 
   static async update(id, data) {
-    if (!isValid(id)) {
-      return { idError: true };
-    }
+    const result = await col.findOne({ id });
+    if (!result) return { error: "Id not found." };
 
-    if (!("name" in data) && !("reps" in data) && !("load" in data)) {
-      return { error: true }
-    }
+    const { acknowledged } = await col.updateOne({ _id: getId(id) }, { $set: data });
 
-    const result = await col.updateOne({ _id: getId(id) }, { $set: data });
-    if (!result.acknowledged) throw Error("Could not update workout to the database.");
+    if (!acknowledged) throw Error("Could not update workout to the database.");
 
-    return {};
+    return result;
   }
 
   static async deleteById(id) {
-    if (!isValid(id)) {
-      return { idError: true };
-    }
-
     const { acknowledged } = await col.deleteOne({ _id: getId(id) });
     if (!acknowledged) throw Error("Could not delete workout from the database.");
 
-    return {};
+    return;
   }
 }
 

@@ -30,7 +30,7 @@ const index = () => {
     }
   };
 
-  const handleEdit = (w) => { setUpdate(true) };
+  const handleEdit = w => setUpdate(w);
 
   const resetUpdate = () => setUpdate(null);
 
@@ -38,7 +38,7 @@ const index = () => {
     <h1 class="workouts-title">Workouts List</h1>
     <Show when={update()}>
       <Modal onClose={resetUpdate}>
-        <WorkoutForm update={true} />
+        <WorkoutForm update={update()} onClose={resetUpdate} />
       </Modal>
     </Show>
     <Switch fallback={<p class="workouts-fallback">They are currently no workouts added.</p>}>

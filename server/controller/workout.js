@@ -19,6 +19,8 @@ exports.index_post = async (req, res) => {
       return res.status(400).json({ error, errors });
     }
 
+    data.done = false;
+
     const result = await Workout.set(data);
 
     return res.status(201).json({ data: result });
@@ -29,13 +31,16 @@ exports.index_post = async (req, res) => {
 
 exports.idParam_get = async (req, res) => {
   const { id } = req.params;
+  const valid = Workout.validateId(id);
+  if (!valid) return res.status(400).json({ error: "Invalid id." });
+
   try {
-    const { idError, result } = await Workout.getById(id);
-    if (idError || !result) {
-      return res.status(404).json({ error: "Invalid id." });
+    const result = await Workout.getById(id);
+    if (!result) {
+      return res.status(404).json({ error: "Workout not found." });
     }
 
-    return res.json({ data: result });
+    return res.json(result);
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
@@ -43,15 +48,21 @@ exports.idParam_get = async (req, res) => {
 
 exports.idParam_patch = async (req, res) => {
   const { id } = req.params;
+  const valid = Workout.validateId(id);
+  if (!valid) return res.status(400).json({ error: "Invalid id." });
+
   try {
-    const { idError, error } = await Workout.update(id, req.body);
-    if (idError) {
-      return res.status(404).json({ error: "Invalid id." });
-    } else if (error) {
-      return res.status(400).json({ error: "Invalid data." });
+    const { error, data, errors } = Workout.validateOnUpdate(req.body);
+    if (error) {
+      return res.status(400).json({ error, ...errors });
     }
 
-    return res.json("OK");
+    const result = await Workout.update(id, req.body);
+    if (result?.error) {
+      return res.status(404).json({ ...result });
+    }
+
+    return res.json(true);
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
@@ -59,13 +70,13 @@ exports.idParam_patch = async (req, res) => {
 
 exports.idParam_delete = async (req, res) => {
   const { id } = req.params;
-  try {
-    const { idError } = await Workout.deleteById(id);
-    if (idError) {
-      return res.status(404).json({ error: "Invalid id." });
-    }
+  const valid = Workout.validateId(id);
+  if (!valid) return res.status(400).json({ error: "Invalid id." });
 
-    return res.json("OK");
+  try {
+    await Workout.deleteById(id);
+
+    return res.json(true);
   } catch (err) {
     return res.status(500).json({ error: err.message });
   }
