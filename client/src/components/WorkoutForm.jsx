@@ -3,17 +3,19 @@ import { useNavigate } from "solid-start";
 import { post_workout, update_workout } from "~/lib/workouts";
 import { useWorkouts } from "~/context/workouts";
 
+const initialErrors = {
+  error: null,
+  nameError: null,
+  repsError: null,
+  loadError: null,
+};
+
 const WorkoutForm = props => {
   const merged = mergeProps({ update: null }, props);
   const { addWorkout, updateWorkout } = useWorkouts();
   const [workout, setWorkout] = createSignal({ name: merged.update?.name || "", reps: merged.update?.reps || null, load: merged.update?.load || null });
   const [loading, setLoading] = createSignal(false);
-  const [errors, setErrors] = createSignal({
-    error: null,
-    nameError: null,
-    repsError: null,
-    loadError: null,
-  });
+  const [errors, setErrors] = createSignal(initialErrors);
   let inputRef;
 
   onMount(() => inputRef.select());
@@ -28,7 +30,10 @@ const WorkoutForm = props => {
     if (!workout().name || !workout().reps || !workout().load) return;
 
     try {
-      setLoading(true);
+      batch(() => {
+        setLoading(true);
+        setErrors(initialErrors);
+      })
       const { errors, error, data } = merged.update ? (await update_workout(merged.update?._id, { name: workout().name, reps: +workout().reps, load: +workout().load })) : (await post_workout({ name: workout().name, reps: +workout().reps, load: +workout().load }));
 
       if (errors) {
