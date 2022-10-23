@@ -67,18 +67,18 @@ class Workout {
 
   static validateOnUpdate(data) {
     let error = "";
+    
     if ("name" in data && "reps" in data && "load" in data) {
       const result = this.validateOnSet(data);
       return result;
     } else if (Object.keys(data).length === 1 && "done" in data) {
-      if (typeof done !== "boolean") {
+      if (typeof data.done !== "boolean") {
         error = "Invalid type.";
-        return { error, data };
       }
     } else {
       error = "Invalid data.";
-      return { error, data };
     }
+    return { error, data };
   }
 
   static validateId(id) {
@@ -86,7 +86,7 @@ class Workout {
   }
 
   static async update(id, data) {
-    const result = await col.findOne({ id });
+    const result = await col.findOne({ _id: getId(id) });
     if (!result) return { error: "Id not found." };
 
     const { acknowledged } = await col.updateOne({ _id: getId(id) }, { $set: data });

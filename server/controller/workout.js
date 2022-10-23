@@ -14,7 +14,7 @@ exports.index_get = async (req, res) => {
 
 exports.index_post = async (req, res) => {
   try {
-    const { error, errors, data } = Workout.validate(req.body);
+    const { error, errors, data } = Workout.validateOnSet(req.body);
     if (error) {
       return res.status(400).json({ error, errors });
     }
