@@ -1,6 +1,6 @@
 import { createSignal, onMount, batch } from "solid-js";
 import { useNavigate } from "solid-start";
-import { post_workout } from "~/api/workouts";
+import { post_workout } from "~/lib/workouts";
 import { useWorkouts } from "~/context/workouts";
 
 const WorkoutForm = props => {

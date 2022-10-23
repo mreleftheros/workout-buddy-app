@@ -1,8 +1,8 @@
-import { delete_workout } from "~/api/workouts";
+import { delete_workout, toggle_workout } from "~/lib/workouts";
 import { useWorkouts } from "~/context/workouts";
 
 const index = () => {
-  const { workouts, deleteWorkout } = useWorkouts();
+  const { workouts, deleteWorkout, toggleWorkout } = useWorkouts();
 
   const handleDelete = async id => {
     try {
@@ -13,7 +13,19 @@ const index = () => {
     } catch (err) {
       return; //
     }
-  }
+  };
+
+  const handleToggle = async ({ id, done }) => {
+    try {
+      const ok = await toggle_workout(id, done);
+      if (ok) {
+        return toggleWorkout(id);
+      }
+    } catch (err) {
+      return; //
+    }
+  };
+  const handleEdit = (w) => { };
 
   return <section className="workouts">
     <h1 class="workouts-title">Workouts List</h1>
@@ -45,8 +57,8 @@ const index = () => {
                   <h2 class="workouts-item-load">{w?.load}kg</h2>
                 </div>
                 <div className="workouts-item-tools">
-                  <button class="workouts-item-tool toggle">{w?.done ? "❌" : "☑"}</button>
-                  <button class="workouts-item-tool edit">🖊</button>
+                  <button onClick={[handleToggle, { id: w._id, done: !w.done }]} class="workouts-item-tool toggle">{w?.done ? "❌" : "☑"}</button>
+                  <button onClick={[handleEdit, w]} class="workouts-item-tool edit">🖊</button>
                   <button onClick={[handleDelete, w._id]} class="workouts-item-tool trash">🗑</button>
                 </div>
               </li>

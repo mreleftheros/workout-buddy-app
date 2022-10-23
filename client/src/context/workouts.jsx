@@ -1,6 +1,6 @@
 import { createContext, useContext, createResource } from "solid-js";
 import { useAuth } from "./auth";
-import { get_workouts } from "~/api/workouts";
+import { get_workouts } from "~/lib/workouts";
 
 const WorkoutContext = createContext();
 
@@ -8,11 +8,13 @@ const WorkoutProvider = props => {
   const { auth } = useAuth();
   const [workouts, { mutate, refetch }] = createResource(auth, get_workouts);
 
-  const addWorkout = (obj) => mutate(prev => [obj, ...prev]);
+  const addWorkout = obj => mutate(prev => [obj, ...prev]);
 
-  const deleteWorkout = (id) => mutate(prev => prev.filter(w => w._id !== id));
+  const deleteWorkout = id => mutate(prev => prev.filter(w => w._id !== id));
 
-  return <WorkoutContext.Provider value={{ workouts, addWorkout, deleteWorkout }} >
+  const toggleWorkout = id => mutate(prev => prev.map(w => w._id === id ? ({ ...w, done: !w.done }) : w));
+
+  return <WorkoutContext.Provider value={{ workouts, addWorkout, deleteWorkout, toggleWorkout }} >
     {props.children}
   </WorkoutContext.Provider>
 }

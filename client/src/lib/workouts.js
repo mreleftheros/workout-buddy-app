@@ -35,3 +35,18 @@ export const delete_workout = async (id) => {
     throw err;
   }
 }
+
+export const toggle_workout = async (id, done) => {
+  try {
+    const res = await fetch(`http://localhost:5000/api/workouts/${id}`, {
+      method: "PATCH",
+      headers: {
+        "content-type": "application/json"
+      },
+      body: JSON.stringify({ done })
+    });
+    return true;
+  } catch (err) {
+    throw err;
+  }
+}
