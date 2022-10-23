@@ -1,8 +1,12 @@
 import { delete_workout, toggle_workout } from "~/lib/workouts";
 import { useWorkouts } from "~/context/workouts";
+import Modal from "~/components/Modal";
+import { createSignal } from "solid-js";
+import WorkoutForm from "~/components/WorkoutForm";
 
 const index = () => {
   const { workouts, deleteWorkout, toggleWorkout } = useWorkouts();
+  const [update, setUpdate] = createSignal(null);
 
   const handleDelete = async id => {
     try {
@@ -25,10 +29,18 @@ const index = () => {
       return; //
     }
   };
-  const handleEdit = (w) => { };
+
+  const handleEdit = (w) => { setUpdate(true) };
+
+  const resetUpdate = () => setUpdate(null);
 
   return <section className="workouts">
     <h1 class="workouts-title">Workouts List</h1>
+    <Show when={update()}>
+      <Modal onClose={resetUpdate}>
+        <WorkoutForm update={true} />
+      </Modal>
+    </Show>
     <Switch fallback={<p class="workouts-fallback">They are currently no workouts added.</p>}>
       <Match when={workouts.loading}>
         <p class="workouts-loading">Loading...</p>

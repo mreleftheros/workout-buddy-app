@@ -1,9 +1,10 @@
-import { createSignal, onMount, batch } from "solid-js";
+import { createSignal, onMount, batch, mergeProps } from "solid-js";
 import { useNavigate } from "solid-start";
 import { post_workout } from "~/lib/workouts";
 import { useWorkouts } from "~/context/workouts";
 
 const WorkoutForm = props => {
+  const merged = mergeProps({ update: null }, props);
   const { addWorkout } = useWorkouts();
   const [workout, setWorkout] = createSignal({ name: "", reps: null, load: null });
   const [loading, setLoading] = createSignal(false);
@@ -46,7 +47,7 @@ const WorkoutForm = props => {
   }
 
   return <form class="workout-form" autocomplete="off" onSubmit={handleSubmit}>
-    <h2 class="workout-form-title">{props.name}</h2>
+    <h2 class="workout-form-title">{merged.update ? "Edit Workout" : "Add Workout"}</h2>
     <div class="workout-form-group">
       <label class="workout-form-label" htmlFor="name">Name</label>
       <input class="workout-form-input" ref={inputRef} type="text" id="name" name="name" required placeholder="Enter workout name..." onInput={updateWorkout} value={workout().name} />

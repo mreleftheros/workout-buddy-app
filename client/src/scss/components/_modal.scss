@@ -1,0 +1,26 @@
+@use "../abstract/" as *;
+
+.modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: $white;
+  border: solid $primary;
+  color: $black;
+  min-width: 35rem;
+  min-height: 35rem;
+
+  &-close {
+    position: absolute;
+    top: 2.5%;
+    right: 5%;
+    font-size: 2rem;
+    border: 0;
+    background-color: transparent;
+    font-weight: 900;
+    padding: .25rem .75rem;
+    color: $error;
+    cursor: pointer;
+  }
+}

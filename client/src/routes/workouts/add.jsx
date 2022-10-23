@@ -1,7 +1,7 @@
 import WorkoutForm from "~/components/WorkoutForm";
 
 const add = () => {
-  return <WorkoutForm name="New Workout" />
+  return <WorkoutForm />
 }
 
 export default add;
