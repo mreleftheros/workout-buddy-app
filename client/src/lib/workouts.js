@@ -1,8 +1,12 @@
 const baseUrl = "http://localhost:5000/api/workouts/";
 
-export const get_workouts = async () => {
+export const get_workouts = async (auth) => {
   try {
-    const res = await fetch(baseUrl);
+    const res = await fetch(baseUrl, {
+      headers: {
+        authorization: `Bearer ${auth.token}`
+      }
+    });
     const { data } = await res.json();
     return data;
   } catch (err) {
@@ -10,12 +14,13 @@ export const get_workouts = async () => {
   }
 };
 
-export const post_workout = async (obj) => {
+export const post_workout = async (token, obj) => {
   try {
     const res = await fetch(baseUrl, {
       method: "POST",
       headers: {
-        "content-type": "application/json"
+        "content-type": "application/json",
+        authorization: `Bearer ${token}`
       },
       body: JSON.stringify(obj)
     });
@@ -27,10 +32,13 @@ export const post_workout = async (obj) => {
   }
 };
 
-export const delete_workout = async (id) => {
+export const delete_workout = async (token, id) => {
   try {
     const res = await fetch(`${baseUrl}${id}`, {
-      method: "DELETE"
+      method: "DELETE",
+      headers: {
+        authorization: `Bearer ${token}`
+      }
     });
     if (res.ok) return true;
   } catch (err) {
@@ -38,12 +46,13 @@ export const delete_workout = async (id) => {
   }
 };
 
-export const toggle_workout = async (id, done) => {
+export const toggle_workout = async (token, id, done) => {
   try {
     const res = await fetch(`${baseUrl}${id}`, {
       method: "PATCH",
       headers: {
-        "content-type": "application/json"
+        "content-type": "application/json",
+        authorization: `Bearer ${token}`
       },
       body: JSON.stringify({ done })
     });
@@ -53,18 +62,19 @@ export const toggle_workout = async (id, done) => {
   }
 };
 
-export const update_workout = async (id, obj) => {
+export const update_workout = async (token, id, obj) => {
   try {
     const res = await fetch(`${baseUrl}${id}`, {
       method: "PATCH",
       headers: {
-        "content-type": "application/json"
+        "content-type": "application/json",
+        authorization: `Bearer ${token}`
       },
       body: JSON.stringify(obj)
     });
-    const {error, data, errors} = await res.json();
+    const { error, data, errors } = await res.json();
 
-    return {error, data, errors};
+    return { error, data, errors };
   } catch (err) {
     throw err;
   }

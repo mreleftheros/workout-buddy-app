@@ -19,7 +19,7 @@ const index = () => {
 
   const handleDelete = async id => {
     try {
-      const ok = await delete_workout(id);
+      const ok = await delete_workout(auth()?.token, id);
       if (ok) {
         deleteWorkout(id);
       }
@@ -30,7 +30,7 @@ const index = () => {
 
   const handleToggle = async ({ id, done }) => {
     try {
-      const ok = await toggle_workout(id, done);
+      const ok = await toggle_workout(auth()?.token, id, done);
       if (ok) {
         return toggleWorkout(id);
       }
