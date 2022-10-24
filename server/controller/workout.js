@@ -1,6 +1,7 @@
 const Workout = require("../model/Workout");
 
 exports.index_get = async (req, res) => {
+  
   try {
     const result = await Workout.getAll();
 

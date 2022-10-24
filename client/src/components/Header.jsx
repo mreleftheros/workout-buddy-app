@@ -2,7 +2,7 @@ import { A } from "solid-start";
 import { useAuth } from "~/context/auth";
 
 const Header = () => {
-  const { auth, logout } = useAuth();
+  const { auth, setAuth } = useAuth();
 
   return <header class="header">
     <nav className="header-nav">
@@ -15,7 +15,7 @@ const Header = () => {
         <A end class="header-link" href="/about">About</A>
         <A end class="header-link" href="/workouts/add">New Workout</A>
         <Show when={auth()}>
-          <button class="header-btn" onClick={logout} type="button" aria-label="logout">Logout</button>
+          <button class="header-btn" onClick={() => setAuth(null)} type="button" aria-label="logout">Logout</button>
         </Show>
       </div>
     </nav>

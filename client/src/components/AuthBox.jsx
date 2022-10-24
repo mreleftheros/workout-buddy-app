@@ -33,12 +33,12 @@ const AuthBox = props => {
       });
 
       const { error, data, errors } = merged.login ? await login_post(form().username, form().password) : await signup_post(form().username, form().password);
-
+      
       if (errors) {
         setErrors(prev => ({ ...prev, ...errors }));
       }
       if (error) {
-        setErrors(prev => ({ ...prev, error: error }));
+        return setErrors(prev => ({ ...prev, error: error }));
       }
       setAuth(data);
     } catch (err) {

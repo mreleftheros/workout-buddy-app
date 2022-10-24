@@ -3,10 +3,19 @@ import { useWorkouts } from "~/context/workouts";
 import Modal from "~/components/Modal";
 import { createSignal } from "solid-js";
 import WorkoutForm from "~/components/WorkoutForm";
+import { useAuth } from "~/context/auth";
+import { useNavigate } from "solid-start";
 
 const index = () => {
   const { workouts, deleteWorkout, toggleWorkout } = useWorkouts();
   const [update, setUpdate] = createSignal(null);
+  const { auth } = useAuth();
+
+  const navigate = useNavigate();
+
+  if (!auth()) {
+    return navigate("/login");
+  }
 
   const handleDelete = async id => {
     try {

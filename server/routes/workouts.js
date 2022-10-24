@@ -1,5 +1,8 @@
 const router = require("express").Router();
 const { index_get, index_post, idParam_get, idParam_patch, idParam_delete } = require("../controller/workout");
+const { requireAuth } = require("../middleware/auth");
+
+router.use(requireAuth);
 
 router.get("/", index_get);
 

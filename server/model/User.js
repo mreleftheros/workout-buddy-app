@@ -1,4 +1,4 @@
-const { getCol } = require("../config/db");
+const { getCol, getId } = require("../config/db");
 const col = getCol("users");
 const argon = require("argon2");
 
@@ -72,7 +72,7 @@ class User {
   }
 
   static async check(username) {
-    return (await col.findOne({ username }));
+    return !!(await col.findOne({ username }));
   }
 
   static async signup(data) {
@@ -108,6 +108,10 @@ class User {
       _id: result._id,
       username: result.username
     };
+  }
+
+  static async getById(id) {
+    return (await col.findOne({ _id: getId(id) }));
   }
 }
 

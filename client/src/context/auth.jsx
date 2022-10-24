@@ -9,15 +9,17 @@ const AuthProvider = props => {
 
   const navigate = useNavigate();
 
-  createEffect(() => auth() && navigate("/workouts"));
+  createEffect(() => {
+    if (auth()) {
+      localStorage.setItem("auth", JSON.stringify(auth()));
+      navigate("/workouts");
+    } else {
+      localStorage.removeItem("auth");
+      navigate("/login");
+    }
+  });
 
-  const logout = () => {
-    localStorage.removeItem("auth");
-    setAuth(null);
-    return navigate("/login");
-  }
-
-  return <AuthContext.Provider value={{ auth, setAuth, logout }}>
+  return <AuthContext.Provider value={{ auth, setAuth }}>
     {props.children}
   </AuthContext.Provider>
 }
