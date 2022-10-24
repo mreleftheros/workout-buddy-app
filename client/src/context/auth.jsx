@@ -1,11 +1,23 @@
-import { createContext, useContext, createSignal } from "solid-js";
+import { createContext, useContext, createSignal, createEffect } from "solid-js";
+import { useNavigate } from "solid-start";
 
 const AuthContext = createContext();
 
 const AuthProvider = props => {
-  const [auth, setAuth] = createSignal(true);
+  const stored = localStorage.auth ? JSON.parse(localStorage.getItem("auth")) : null;
+  const [auth, setAuth] = createSignal(stored);
 
-  return <AuthContext.Provider value={{ auth, setAuth }}>
+  const navigate = useNavigate();
+
+  createEffect(() => auth() && navigate("/workouts"));
+
+  const logout = () => {
+    localStorage.removeItem("auth");
+    setAuth(null);
+    return navigate("/login");
+  }
+
+  return <AuthContext.Provider value={{ auth, setAuth, logout }}>
     {props.children}
   </AuthContext.Provider>
 }
