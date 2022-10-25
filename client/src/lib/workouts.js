@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:5000/api/workouts/";
+const baseUrl = "https://flying-vigorous-cicada.glitch.me/api/workouts/";
 
 export const get_workouts = async (auth) => {
   try {

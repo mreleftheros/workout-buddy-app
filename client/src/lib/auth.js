@@ -1,4 +1,4 @@
-const baseUrl = "http://localhost:5000/api/auth/";
+const baseUrl = "https://flying-vigorous-cicada.glitch.me/api/auth/";
 
 export const signup_post = async (username, password) => {
   try {
