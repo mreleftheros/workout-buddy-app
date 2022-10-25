@@ -9,6 +9,11 @@
     padding: 0 1rem;
     border-left: solid $primaryDark 1.5px;
     border-right: solid $primaryDark 1.5px;
+    margin-bottom: 1rem;
+  }
+
+  &-fallback {
+    font-size: 2rem;
   }
 
   &-loading {
@@ -104,8 +109,6 @@
       &.trash {
         color: $error;
       }
-
-
     }
   }
 }

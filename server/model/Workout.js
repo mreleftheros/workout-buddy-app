@@ -48,16 +48,16 @@ class Workout {
     return { errors, error, data };
   }
 
-  static async set(data) {
-    const { insertedId, acknowledged } = await col.insertOne(data);
+  static async set(userId, data) {
+    const { insertedId, acknowledged } = await col.insertOne({ userId, ...data });
 
     if (!acknowledged) throw Error("Could not save workout to the database.");
 
     return { _id: insertedId.toString(), ...data };
   }
 
-  static async getAll() {
-    return col.find()?.toArray();
+  static async getAllByUserId(userId) {
+    return col.find({ userId: userId })?.toArray();
   }
 
   static async getById(id) {
@@ -67,7 +67,7 @@ class Workout {
 
   static validateOnUpdate(data) {
     let error = "";
-    
+
     if ("name" in data && "reps" in data && "load" in data) {
       const result = this.validateOnSet(data);
       return result;

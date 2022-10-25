@@ -3,7 +3,7 @@ const Workout = require("../model/Workout");
 exports.index_get = async (req, res) => {
   
   try {
-    const result = await Workout.getAll();
+    const result = await Workout.getAllByUserId(req.userId);
 
     if (!result) return res.status(404).json({ error: "Workouts not found." });
 
@@ -22,7 +22,7 @@ exports.index_post = async (req, res) => {
 
     data.done = false;
 
-    const result = await Workout.set(data);
+    const result = await Workout.set(req.userId, data);
 
     return res.status(201).json({ data: result });
   } catch (err) {
