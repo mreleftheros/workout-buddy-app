@@ -5,6 +5,7 @@ import { createSignal } from "solid-js";
 import WorkoutForm from "~/components/WorkoutForm";
 import { useAuth } from "~/context/auth";
 import { useNavigate } from "solid-start";
+import { A } from "solid-start";
 
 const index = () => {
   const { workouts, deleteWorkout, toggleWorkout } = useWorkouts();
@@ -50,7 +51,10 @@ const index = () => {
         <WorkoutForm update={update()} onClose={resetUpdate} />
       </Modal>
     </Show>
-    <Switch fallback={<p class="workouts-fallback">They are currently no workouts added.</p>}>
+    <Switch fallback={<>
+      <p class="workouts-fallback">They are currently no workouts added.</p>
+      <A class="workouts-link" href="/workouts/add">New Workout</A>
+    </>}>
       <Match when={workouts.loading}>
         <p class="workouts-loading">Loading...</p>
       </Match>
