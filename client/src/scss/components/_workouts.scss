@@ -71,6 +71,7 @@
     border-radius: .75rem;
     color: $blackLight;
     border: $primaryDark solid;
+    gap: 2.5rem;
 
     @include mq(768px) {
       flex-direction: row;
@@ -83,11 +84,12 @@
     &-details {
       display: flex;
       flex-direction: column;
-      gap: 2.5rem;
+      gap: 1.5rem;
       align-items: center;
 
       @include mq(768px) {
         flex-direction: row;
+        gap: 2.5rem;
       }
     }
 
