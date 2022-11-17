@@ -42,6 +42,7 @@
   }
 
   &-logo {
+    display: none;
     font-family: monospace;
     font-size: clamp(2rem, calc(2rem + 2vw), 3.5rem);
     font-weight: 900;
@@ -51,18 +52,17 @@
     &:hover {
       opacity: .75;
     }
+
+    @include mq(768px) {
+      display: block;
+    }
   }
 
   &-links {
-    display: none;
     justify-content: end;
     align-items: center;
     height: 100%;
     width: max-content;
-
-    @include mq(768px) {
-      display: flex;
-    }
   }
 
   &-link {
