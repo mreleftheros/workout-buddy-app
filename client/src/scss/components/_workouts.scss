@@ -1,16 +1,18 @@
 @use "../abstract/" as *;
+@use "sass:color";
 
 .workouts {
   height: 100%;
 
   &-title {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     width: max-content;
     padding: 0 1rem;
     border-left: solid $primaryDark 1.5px;
     border-right: solid $primaryDark 1.5px;
+    margin: 1.5rem 0 1rem;
   }
-  
+
   &-fallback {
     margin: 1rem 0;
     font-size: 2rem;
@@ -53,48 +55,54 @@
   }
 
   &-list {
-    margin-top: 1.5rem;
+    margin-top: .5rem;
   }
 
-  &-item:not(:first-of-type) {
-    border: $primaryDark solid;
-    margin: 1rem 0 2.5rem;
-  }
-
-  &-item:first-of-type {
-    margin: 1rem 0 .5rem;
-    border-bottom: $primaryDark solid;
-    color: $black;
+  &item:not(:first-of-type) {
+    margin: 2.5rem 0;
   }
 
   &-item {
     display: flex;
+    flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     padding: 1rem 1.5rem;
-    border-radius: .25rem;
+    border-radius: .75rem;
     color: $blackLight;
+    border: $primaryDark solid;
+
+    @include mq(768px) {
+      flex-direction: row;
+    }
 
     &.done {
-      background-color: $primaryLight;
+      background-color: color.scale($primaryLight, $lightness: 25%);
     }
 
     &-details {
-      flex-basis: 50rem;
       display: flex;
+      flex-direction: column;
+      gap: 2.5rem;
       align-items: center;
+
+      @include mq(768px) {
+        flex-direction: row;
+      }
     }
 
     &-name {
-      flex: 1 1 50rem;
       color: $black;
+      flex: 1 1 33%;
+      max-width: 25ch;
     }
 
     &-reps {
-      flex: 1 1 15rem;
+      flex: 1 1 33%;
     }
 
     &-load {
-      flex: 1 1 15rem;
+      flex: 1 1 33%;
     }
 
     &-tools {

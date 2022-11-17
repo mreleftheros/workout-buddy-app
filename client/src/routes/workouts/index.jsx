@@ -45,7 +45,7 @@ const index = () => {
   const resetUpdate = () => setUpdate(null);
 
   return <section className="workouts">
-    <h1 class="workouts-title">Workouts List</h1>
+    <h1 class="workouts-title">My Workouts List</h1>
     <Show when={update()}>
       <Modal onClose={resetUpdate}>
         <WorkoutForm update={update()} onClose={resetUpdate} />
@@ -65,14 +65,6 @@ const index = () => {
       </Match>
       <Match when={workouts()?.length > 0}>
         <ul class="workouts-list">
-          <li class="workouts-item">
-            <div class="workouts-item-details">
-              <h2 class="workouts-item-name">Name</h2>
-              <h2 class="workouts-item-reps">Reps</h2>
-              <h2 class="workouts-item-load">Load</h2>
-            </div>
-            <div className="workouts-item-tools"></div>
-          </li>
           <For each={workouts()}>
             {w => (
               <li class="workouts-item" classList={{ done: w?.done }}>
