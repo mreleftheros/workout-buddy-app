@@ -9,7 +9,7 @@ const Header = () => {
       <A end class="header-logo" href="/">Workout Buddy App</A>
       <div className="header-links">
         <Show when={auth()} fallback={<A end class="header-link" href="/login">Login</A>}>
-          <h2>Welcome, <span class="header-title">{auth()?.username}</span></h2>
+          <h3>Welcome, <span class="header-title">{auth()?.username}</span></h3>
         </Show>
         <A end class="header-link" href="/workouts">Workouts</A>
         <A end class="header-link" href="/about">About</A>

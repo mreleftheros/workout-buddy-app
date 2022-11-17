@@ -9,17 +9,22 @@
 *::after {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
+  box-sizing: border-box;
 }
 
 body {
-  box-sizing: border-box;
   color: $blackLight;
   font-size: 1.6rem;
   min-height: 100vh;
+  line-height: 1.5;
   font-family: Helvetica, Arial, sans-serif;
   display: grid;
-  grid-template-rows: 10vh 1fr 5vh;
+  grid-template-rows: minmax(12.5vh, auto) 1fr;
+  font-kerning: normal;
+
+  @include mq(768px) {
+    grid-template-rows: minmax(12.5vh, auto) 1fr minmax(5vh, auto);
+  }
 }
 
 a,
@@ -46,11 +51,5 @@ ul {
 }
 
 .main {
-  padding-top: 2.5rem;
-
-  @include mq(768px) {
-    width: 95%;
-    max-width: 120rem;
-    margin: 0 auto;
-  }
+  padding: 1rem 1.5rem;
 }
