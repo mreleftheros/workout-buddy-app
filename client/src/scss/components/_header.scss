@@ -59,10 +59,15 @@
   }
 
   &-links {
+    display: flex;
     justify-content: end;
     align-items: center;
     height: 100%;
-    width: max-content;
+    padding: 0 1rem;
+
+    @include mq(768px) {
+      padding: 0;
+    }
   }
 
   &-link {
