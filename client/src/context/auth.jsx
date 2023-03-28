@@ -27,8 +27,7 @@ const AuthProvider = props => {
   });
 
   const signup = async (username, password) => {
-    const res = await signup_post(username, password);
-    const { error, errors, data } = await res.json();
+    const { error, errors, data } = await signup_post(username, password);
     if (error) {
       return { error, errors };
     } else {
@@ -37,8 +36,7 @@ const AuthProvider = props => {
   };
 
   const login = async (username, password) => {
-    const res = await login_post(username, password);
-    const { error, data } = await res.json();
+    const { error, data } = await login_post(username, password);
     if (error) {
       return { error };
     } else {
