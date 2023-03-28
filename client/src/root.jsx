@@ -28,7 +28,7 @@ export default function Root() {
       </Head>
       <Body>
         <Suspense>
-          <ErrorBoundary>
+          <ErrorBoundary fallback={err => <p>{err.message}</p>}>
             <AuthProvider>
               <WorkoutProvider>
                 <Header />

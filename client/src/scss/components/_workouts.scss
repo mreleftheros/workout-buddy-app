@@ -78,6 +78,7 @@
     color: $blackLight;
     border: $primaryDark solid;
     gap: 2.5rem;
+    margin-bottom: 2.5rem;
 
     @include mq(768px) {
       flex-direction: row;
@@ -102,7 +103,6 @@
     &-name {
       color: $black;
       flex: 1 1 33%;
-      max-width: 25ch;
     }
 
     &-reps {

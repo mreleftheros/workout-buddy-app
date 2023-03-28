@@ -1,18 +1,16 @@
 import { useNavigate } from "solid-start";
 import WorkoutForm from "~/components/WorkoutForm";
-import { useAuth } from "~/context/auth";
+import { useAuthContext } from "~/context/auth";
 
 const add = () => {
-  const { auth } = useAuth();
-
+  const { auth } = useAuthContext();
   const navigate = useNavigate();
 
   if (!auth()) {
     return navigate("/login");
   }
 
-  return <WorkoutForm />
-}
+  return <WorkoutForm />;
+};
 
 export default add;
-
