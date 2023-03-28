@@ -37,7 +37,7 @@ const Header = () => {
           </A>
           <A end class="header-link" href="/workouts/add">
             <VsAdd size={25} color="white" />
-            <span>New Workout</span>
+            <span>Add New</span>
           </A>
           <Show when={auth()}>
             <button

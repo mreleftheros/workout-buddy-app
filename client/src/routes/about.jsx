@@ -3,7 +3,7 @@ const about = () => {
     <section class="about">
       <p class="about-text">
         This is a fullstack MERN stack project using Solidjs, Nodejs, Express
-        and Mongodb with client authentication token system.
+        and Mongodb with jwt client token authentication system.
       </p>
       <p class="about-text">
         Check out my other projects on my{" "}
