@@ -1,6 +1,6 @@
 import { A } from "solid-start";
 import { useAuthContext } from "~/context/auth";
-import { CgGym, CgLogOut } from "solid-icons/cg";
+import { CgGym, CgLogIn, CgLogOut } from "solid-icons/cg";
 import { FaRegularUser, FaSolidCircleInfo } from "solid-icons/fa";
 import { VsAdd } from "solid-icons/vs";
 
@@ -18,7 +18,8 @@ const Header = () => {
             when={auth()}
             fallback={
               <A end class="header-link" href="/login">
-                Login
+                <CgLogIn size={25} color="white" />
+                <span>Login</span>
               </A>
             }
           >
@@ -31,13 +32,13 @@ const Header = () => {
             <CgGym size={25} color="white" />
             <span>Workouts</span>
           </A>
-          <A end class="header-link" href="/about">
-            <FaSolidCircleInfo size={25} color="white" />
-            <span>About</span>
-          </A>
           <A end class="header-link" href="/workouts/add">
             <VsAdd size={25} color="white" />
             <span>Add New</span>
+          </A>
+          <A end class="header-link" href="/about">
+            <FaSolidCircleInfo size={25} color="white" />
+            <span>About</span>
           </A>
           <Show when={auth()}>
             <button
