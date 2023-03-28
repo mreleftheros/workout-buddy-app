@@ -44,8 +44,9 @@ const WorkoutProvider = props => {
 
   const updateWorkout = async (id, body) => {
     const result = await idParam_patch(auth()?.token, id, body);
-    if (result.error) {
-      return { error: result.error, errors: result.errors };
+
+    if (result?.error) {
+      return result;
     } else {
       mutate(prev => prev.map(w => (w._id === id ? { ...w, body } : w)));
       refetch();

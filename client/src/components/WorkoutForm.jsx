@@ -39,14 +39,14 @@ const WorkoutForm = props => {
       });
 
       if (merged.update) {
-        const { errors, error } = await updateWorkout(merged.update?._id, {
+        const result = await updateWorkout(merged.update?._id, {
           name: workout().name,
           reps: +workout().reps,
           load: +workout().load,
         });
 
-        if (error) {
-          setErrors(prev => ({ ...prev, ...errors, error }));
+        if (result?.error) {
+          setErrors(prev => ({ ...prev, error: result.error, ...result }));
         } else {
           return props.onClose();
         }
