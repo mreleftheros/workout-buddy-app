@@ -46,7 +46,7 @@ const index = () => {
 
   return (
     <section className="workouts">
-      <h1 class="workouts-title">My Workouts List</h1>
+      <h1 class="workouts-title">My Workout List</h1>
       <Show when={update()}>
         <Modal onClose={resetUpdate}>
           <WorkoutForm update={update()} onClose={resetUpdate} />
@@ -59,7 +59,7 @@ const index = () => {
               They are currently no workouts added.
             </p>
             <A class="workouts-link" href="/workouts/add">
-              New Workout
+              Add new workout
             </A>
           </>
         }
@@ -94,7 +94,11 @@ const index = () => {
                       onClick={[handleToggle, { id: w._id, done: !w.done }]}
                       class="workouts-item-tool toggle"
                     >
-                      {w?.done ? <CgToggleOff color="green" /> : <CgToggleOn color="black" />}
+                      {w?.done ? (
+                        <CgToggleOff color="green" size={35} />
+                      ) : (
+                        <CgToggleOn color="gray" size={35} />
+                      )}
                     </button>
                     <button
                       onClick={[handleEdit, w]}

@@ -91,6 +91,7 @@
     }
 
     &-details {
+      flex: 1;
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
@@ -115,6 +116,7 @@
     }
 
     &-tools {
+      flex-basis: 20rem;
       display: flex;
       align-items: center;
       justify-content: space-around;
@@ -128,10 +130,6 @@
       font-size: 2.5rem;
       cursor: pointer;
       border-radius: 0.25rem;
-
-      &.toggle {
-        transform: translateY(-0.25rem);
-      }
 
       &.trash {
         color: $error;
