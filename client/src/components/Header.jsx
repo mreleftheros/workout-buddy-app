@@ -24,20 +24,19 @@ const Header = () => {
           >
             <h3 class="header-link">
               <FaRegularUser size={25} />
-              <span></span>
               <span class="header-title">{auth()?.username}</span>
             </h3>
           </Show>
           <A end class="header-link" href="/workouts">
-            <CgGym size={25} />
+            <CgGym size={25} color="white" />
             <span>Workouts</span>
           </A>
           <A end class="header-link" href="/about">
-            <FaSolidCircleInfo size={25} />
+            <FaSolidCircleInfo size={25} color="white" />
             <span>About</span>
           </A>
           <A end class="header-link" href="/workouts/add">
-            <VsAdd size={25} />
+            <VsAdd size={25} color="white" />
             <span>New Workout</span>
           </A>
           <Show when={auth()}>

@@ -1,4 +1,6 @@
 import { A } from "@solidjs/router";
+import { CgLogIn } from "solid-icons/cg";
+import { FaSolidUsersLine } from "solid-icons/fa";
 import { mergeProps, createSignal, onMount, batch } from "solid-js";
 import { useAuthContext } from "~/context/auth";
 
@@ -72,6 +74,7 @@ const AuthBox = props => {
           value={form().username}
           onInput={updateForm}
           ref={inputRef}
+          disabled={loading()}
         />
         <p className="auth-error">{errors()?.usernameError}</p>
       </div>
@@ -88,6 +91,7 @@ const AuthBox = props => {
           required
           value={form().password}
           onInput={updateForm}
+          disabled={loading()}
         />
         <p className="auth-error">{errors()?.passwordError}</p>
       </div>
@@ -96,7 +100,21 @@ const AuthBox = props => {
         disabled={loading() || !form().username || !form().password}
         class="auth-btn"
       >
-        {loading() ? "Loading..." : merged.login ? "Login" : "Sign up"}
+        {merged.login ? (
+          <>
+            {loading() ? <span class="loader loader-s"></span> : <CgLogIn />}
+            <span>Login</span>
+          </>
+        ) : (
+          <>
+            {loading() ? (
+              <span class="loader loader-s"></span>
+            ) : (
+              <FaSolidUsersLine />
+            )}
+            <span>Sign up</span>
+          </>
+        )}
       </button>
       <Show
         when={merged.login}

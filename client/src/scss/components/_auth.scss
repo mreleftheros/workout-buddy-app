@@ -9,16 +9,17 @@
   min-height: 35rem;
   margin: 1.5rem auto;
   padding: 2rem 1rem;
-  border-radius: .25rem;
-  box-shadow: 0 0 .3rem $blackLight;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 0.3rem $blackLight;
   color: $blackLight;
+  background-color: rgba(255, 255, 255, 0.95);
 
   &-msg {
     font-size: 1.5rem;
   }
 
   &-link {
-    padding: 0 .25rem;
+    padding: 0 0.25rem;
     color: $primaryDark;
     font-weight: 900;
   }
@@ -45,25 +46,28 @@
 
   &-input {
     outline: none;
-    padding: .5rem .5rem;
+    padding: 0.5rem 0.5rem;
     font-size: 1.75rem;
-    margin: .25rem 0;
+    margin: 0.25rem 0;
   }
 
   &-btn {
+    display: flex;
+    align-items: center;
+    gap: .25rem;
     margin-top: auto;
     background-color: $secondary;
     font-size: 1.75rem;
     border: none;
     padding: 1rem 1.5rem;
-    border-radius: .25rem;
+    border-radius: 0.25rem;
     cursor: pointer;
     color: $black;
     font-weight: 900;
     text-transform: uppercase;
 
     &:disabled {
-      opacity: .5;
+      opacity: 0.5;
       cursor: auto;
     }
   }

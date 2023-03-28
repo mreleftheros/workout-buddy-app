@@ -27,9 +27,9 @@
   &-link {
     border: none;
     background-color: $secondary;
-    color: $black;
-    padding: 1rem .75rem;
-    border-radius: .25rem;
+    color: $white;
+    padding: 1rem 0.75rem;
+    border-radius: 0.25rem;
     cursor: pointer;
     font-size: 2rem;
   }
@@ -48,12 +48,12 @@
     &-btn {
       border: none;
       font-size: 2rem;
-      margin: 0 .25rem;
+      margin: 0 0.25rem;
       background-color: $secondary;
       cursor: pointer;
-      border-radius: .25rem;
+      border-radius: 0.25rem;
       padding: 1.25rem 1rem;
-      transition: transform .3s ease-out;
+      transition: transform 0.3s ease-out;
 
       &:hover {
         transform: scale(0.95);
@@ -62,7 +62,7 @@
   }
 
   &-list {
-    margin-top: .5rem;
+    margin-top: 0.5rem;
   }
 
   &item:not(:first-of-type) {
@@ -75,11 +75,12 @@
     justify-content: space-between;
     align-items: center;
     padding: 1rem 1.5rem;
-    border-radius: .75rem;
-    color: $blackLight;
+    border-radius: 0.75rem;
+    color: $black;
     border: $primaryDark solid;
     gap: 2.5rem;
     margin-bottom: 2.5rem;
+    background-color: rgba(225, 225, 225, .75);
 
     @include mq(768px) {
       flex-direction: row;
@@ -102,7 +103,6 @@
     }
 
     &-name {
-      color: $black;
       flex: 1 1 33%;
     }
 
@@ -127,10 +127,10 @@
 
       font-size: 2.5rem;
       cursor: pointer;
-      border-radius: .25rem;
+      border-radius: 0.25rem;
 
       &.toggle {
-        transform: translateY(-.25rem);
+        transform: translateY(-0.25rem);
       }
 
       &.trash {

@@ -5,6 +5,8 @@ import WorkoutForm from "~/components/WorkoutForm";
 import { useAuthContext } from "~/context/auth";
 import { useNavigate } from "solid-start";
 import { A } from "solid-start";
+import { CgToggleOff, CgToggleOn } from "solid-icons/cg";
+import { FiEdit } from "solid-icons/fi";
 
 const index = () => {
   const { workouts, deleteWorkout, toggleWorkout } = useWorkoutContext();
@@ -92,13 +94,13 @@ const index = () => {
                       onClick={[handleToggle, { id: w._id, done: !w.done }]}
                       class="workouts-item-tool toggle"
                     >
-                      {w?.done ? "❌" : "☑"}
+                      {w?.done ? <CgToggleOff color="green" /> : <CgToggleOn color="black" />}
                     </button>
                     <button
                       onClick={[handleEdit, w]}
                       class="workouts-item-tool edit"
                     >
-                      🖊
+                      <FiEdit color="black" />
                     </button>
                     <button
                       onClick={[handleDelete, w._id]}

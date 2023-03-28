@@ -10,6 +10,8 @@
   margin: 1rem auto 2.5rem;
   min-height: 75vh;
   border-radius: .25rem;
+  background-color: rgba(225, 225, 225, .95);
+  color: $blackLight;
 
   &.add {
     box-shadow: 0 0 3px $blackLight;
