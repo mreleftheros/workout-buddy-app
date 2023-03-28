@@ -17,7 +17,7 @@ const WorkoutForm = props => {
     reps: merged.update?.reps || null,
     load: merged.update?.load || null,
   });
-  const [loading, setLoading] = createSignal(true);
+  const [loading, setLoading] = createSignal(false);
   const [errors, setErrors] = createSignal(initialErrors);
   let inputRef;
   const navigate = useNavigate();

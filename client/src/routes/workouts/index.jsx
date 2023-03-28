@@ -63,11 +63,10 @@ const index = () => {
         }
       >
         <Match when={workouts.loading}>
-          <p class="workouts-loading">Loading...</p>
+          <p class="loader"></p>
         </Match>
         <Match when={workouts.error}>
-          <p class="workouts-error">There was some error</p>
-          {workouts.error}
+          {err => <p class="workouts-error">{err.message}</p>}
           <p>
             Please{" "}
             <button class="workouts-error-btn" onClick={refetch}>

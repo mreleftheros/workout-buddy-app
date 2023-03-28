@@ -27,7 +27,7 @@ export default function Root() {
         <link rel="shortcut icon" href="#" type="image/x-icon" />
       </Head>
       <Body>
-        <Suspense>
+        <Suspense fallback={<p class="loader"></p>}>
           <ErrorBoundary fallback={err => <p>{err.message}</p>}>
             <AuthProvider>
               <WorkoutProvider>
