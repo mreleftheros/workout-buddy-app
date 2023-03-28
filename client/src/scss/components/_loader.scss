@@ -1,14 +1,29 @@
 @use "../abstract/" as *;
 
 .loader {
-  width: 2.5rem;
-  height: 2.5rem;
   border-radius: 50%;
-  border-width: 0.1rem;
+  border-width: 0.5rem;
   border-style: solid;
   border-top-color: $primary;
   border-right-color: $primary;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
   animation: spin 1s forwards infinite;
+}
+
+.loader-s {
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.loader-m {
+  width: 5rem;
+  height: 5rem;
+}
+
+.loader-l {
+  width: 10rem;
+  height: 10rem;
 }
 
 @keyframes spin {

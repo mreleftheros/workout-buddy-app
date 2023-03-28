@@ -63,7 +63,9 @@ const index = () => {
         }
       >
         <Match when={workouts.loading}>
-          <p class="loader"></p>
+          <div class="workouts-loading">
+            <span class="loader loader-l"></span>
+          </div>
         </Match>
         <Match when={workouts.error}>
           {err => <p class="workouts-error">{err.message}</p>}

@@ -36,7 +36,8 @@
 
   &-loading {
     font-size: 2rem;
-    margin: 1.5rem 0;
+    margin: 1.5rem auto;
+    text-align: center;
   }
 
   &-error {

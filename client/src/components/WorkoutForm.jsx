@@ -149,7 +149,7 @@ const WorkoutForm = props => {
       >
         {loading() ? (
           <>
-            <span class="loader"></span>
+            <span class="loader loader-s"></span>
             <span>{merged.update ? "Updating..." : "Adding..."}</span>
           </>
         ) : merged.update ? (
