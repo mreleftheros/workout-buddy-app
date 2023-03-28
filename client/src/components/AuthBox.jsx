@@ -121,18 +121,18 @@ const AuthBox = props => {
           when={merged.login}
           fallback={
             <p class="auth-msg">
-              Have an account?
+              Have an account already?
               <A class="auth-link" href="/login">
                 Login
-              </A>
+              </A> {" "} now!
             </p>
           }
         >
           <p class="auth-msg">
             Don't have an account?
             <A class="auth-link" href="/signup">
-              Sign up
-            </A>
+              Join
+            </A> {" "} the club!
           </p>
         </Show>
       </Show>
