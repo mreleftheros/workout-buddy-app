@@ -116,23 +116,25 @@ const AuthBox = props => {
           </>
         )}
       </button>
-      <Show
-        when={merged.login}
-        fallback={
+      <Show when={!loading()} fallback={<p class="auth-msg"></p>}>
+        <Show
+          when={merged.login}
+          fallback={
+            <p class="auth-msg">
+              Have an account?
+              <A class="auth-link" href="/login">
+                Login
+              </A>
+            </p>
+          }
+        >
           <p class="auth-msg">
-            Have an account?
-            <A class="auth-link" href="/login">
-              Login
+            Don't have an account?
+            <A class="auth-link" href="/signup">
+              Sign up
             </A>
           </p>
-        }
-      >
-        <p class="auth-msg">
-          Don't have an account?
-          <A class="auth-link" href="/signup">
-            Sign up
-          </A>
-        </p>
+        </Show>
       </Show>
     </form>
   );
