@@ -1,0 +1,22 @@
+@use "../abstract/" as *;
+
+.loader {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border-width: 0.1rem;
+  border-style: solid;
+  border-top-color: $primary;
+  border-right-color: $primary;
+  animation: spin 1s forwards infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

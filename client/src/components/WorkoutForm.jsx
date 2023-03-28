@@ -1,7 +1,6 @@
 import { createSignal, onMount, batch, mergeProps } from "solid-js";
 import { useNavigate } from "solid-start";
 import { useWorkoutContext } from "~/context/workouts";
-import { useAuthContext } from "~/context/auth";
 
 const initialErrors = {
   error: "",
@@ -11,7 +10,6 @@ const initialErrors = {
 };
 
 const WorkoutForm = props => {
-  const { auth } = useAuthContext();
   const merged = mergeProps({ update: null }, props);
   const { addWorkout, updateWorkout } = useWorkoutContext();
   const [workout, setWorkout] = createSignal({
@@ -19,7 +17,7 @@ const WorkoutForm = props => {
     reps: merged.update?.reps || null,
     load: merged.update?.load || null,
   });
-  const [loading, setLoading] = createSignal(false);
+  const [loading, setLoading] = createSignal(true);
   const [errors, setErrors] = createSignal(initialErrors);
   let inputRef;
   const navigate = useNavigate();
@@ -62,7 +60,7 @@ const WorkoutForm = props => {
         if (error) {
           setErrors(prev => ({ ...prev, ...errors, error }));
         } else {
-          navigate("/workouts")
+          navigate("/workouts");
         }
       }
     } catch (err) {
@@ -96,6 +94,7 @@ const WorkoutForm = props => {
           placeholder="Enter workout name..."
           onInput={updateWorkoutInput}
           value={workout().name}
+          disabled={loading()}
         />
         <p class="workout-form-error">
           {errors()?.nameError && errors().nameError}
@@ -115,6 +114,7 @@ const WorkoutForm = props => {
           placeholder="Enter workout reps..."
           onInput={updateWorkoutInput}
           value={workout().reps}
+          disabled={loading()}
         />
         <p class="workout-form-error">
           {errors()?.repsError && errors().repsError}
@@ -134,6 +134,7 @@ const WorkoutForm = props => {
           placeholder="Enter workout load..."
           onInput={updateWorkoutInput}
           value={workout().load}
+          disabled={loading()}
         />
         <p class="workout-form-error">
           {errors()?.loadError && errors().loadError}
@@ -146,11 +147,16 @@ const WorkoutForm = props => {
         }
         class="workout-form-btn"
       >
-        {loading()
-          ? "Loading..."
-          : merged.update
-          ? "Update Workout"
-          : "Add Workout"}
+        {loading() ? (
+          <>
+            <span class="loader"></span>
+            <span>{merged.update ? "Updating..." : "Adding..."}</span>
+          </>
+        ) : merged.update ? (
+          "Update Workout"
+        ) : (
+          "Add Workout"
+        )}
       </button>
     </form>
   );

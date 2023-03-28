@@ -48,6 +48,9 @@
   }
 
   &-btn {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
     margin-top: auto;
     border: none;
     background-color: $secondary;
