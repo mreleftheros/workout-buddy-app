@@ -4,6 +4,7 @@
   height: 100%;
   max-width: 75rem;
   margin: 0 auto;
+  color: $whiteLight;
 
   &-title {
     font-size: 3.5rem;
@@ -28,9 +29,18 @@
       border: $secondary solid;
       padding: 1.5rem 1rem;
       text-transform: uppercase;
-      border-radius: .75rem;
-      letter-spacing: .1rem;
-      transition: transform .3s ease-out;
+      border-radius: 0.75rem;
+      letter-spacing: 0.1rem;
+      transition: transform 0.3s ease-out;
+
+      &:first-of-type {
+        background-color: $secondary;
+        color: $black;
+      }
+
+      &:last-of-type {
+        color: $whiteLight;
+      }
 
       &:hover {
         transform: scale(0.95);
@@ -38,7 +48,7 @@
 
       &.active {
         background-color: $secondary;
-        color: $black;
+        color: $whiteLight;
         font-weight: 900;
       }
     }
