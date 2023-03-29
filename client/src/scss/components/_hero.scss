@@ -1,9 +1,26 @@
 @use "../abstract/" as *;
 
 .hero {
+  display: flex;
+  flex-wrap: wrap-reverse;
+  align-items: center;
+  gap: 2.5rem;
   height: 100%;
-  max-width: 75rem;
+  max-width: 140rem;
   margin: 0 auto;
+
+  &-figure {
+    flex: 1;
+  }
+
+  &-img {
+    max-width: 100%;
+    object-fit: cover;
+  }
+
+  &-details {
+    flex: 2;
+  }
 
   &-title {
     margin-top: 3rem;
