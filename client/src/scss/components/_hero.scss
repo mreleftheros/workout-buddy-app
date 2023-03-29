@@ -4,7 +4,6 @@
   height: 100%;
   max-width: 75rem;
   margin: 0 auto;
-  color: $whiteLight;
 
   &-title {
     margin-top: 3rem;
@@ -39,17 +38,12 @@
         color: $black;
       }
 
-      &:last-of-type {
-        color: $whiteLight;
-      }
-
       &:hover {
         transform: scale(0.95);
       }
 
       &.active {
         background-color: $secondary;
-        color: $whiteLight;
         font-weight: 900;
       }
     }

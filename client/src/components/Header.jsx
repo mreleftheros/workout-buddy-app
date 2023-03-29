@@ -18,26 +18,26 @@ const Header = () => {
             when={auth()}
             fallback={
               <A end class="header-link" href="/login">
-                <CgLogIn size={25} color="white" />
+                <CgLogIn size={25} color="gray" />
                 <span>Login</span>
               </A>
             }
           >
             <h3 class="header-link">
-              <FaRegularUser size={25} />
+              <FaRegularUser size={25} color="black" />
               <span class="header-title">{auth()?.username}</span>
             </h3>
           </Show>
           <A end class="header-link" href="/workouts">
-            <CgGym size={25} color="white" />
+            <CgGym size={25} color="gray" />
             <span>Workouts</span>
           </A>
           <A end class="header-link" href="/workouts/add">
-            <VsAdd size={25} color="white" />
+            <VsAdd size={25} color="gray" />
             <span>Add New</span>
           </A>
           <A end class="header-link" href="/about">
-            <FaSolidCircleInfo size={25} color="white" />
+            <FaSolidCircleInfo size={25} color="gray" />
             <span>About</span>
           </A>
           <Show when={auth()}>

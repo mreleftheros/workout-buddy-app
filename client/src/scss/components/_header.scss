@@ -12,12 +12,11 @@
 
   &-btn {
     font-size: 1.75rem;
-    border: solid $primary 1px;
-    padding: 0.25rem 0.75rem;
+    border-radius: 50%;
+    border: solid $primaryDark 1px;
+    // padding: 0.25rem 0.75rem;
     background-color: transparent;
     cursor: pointer;
-    color: $whiteLight;
-    border-radius: 0.25rem;
     font-weight: 300;
     transition: opacity 0.3s ease-in-out;
 
@@ -27,7 +26,7 @@
   }
 
   &-title {
-    color: $white;
+    color: $black;
   }
 
   &-nav {
@@ -46,8 +45,8 @@
     font-family: monospace;
     font-size: clamp(2rem, calc(2rem + 2vw), 3.5rem);
     font-weight: 900;
-    color: $primaryLight !important;
-    text-shadow: -1px -1px $black;
+    color: $primaryDark !important;
+    text-shadow: 1px 1px $whiteLight;
     transition: opacity 0.3s ease-in-out;
 
     &:hover {
@@ -78,12 +77,12 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    padding: 0.5rem;
     font-size: 1.5rem;
     text-transform: uppercase;
 
-    & > span {
-      color: $whiteLight;
+    &[type="button"] {
+      padding: 1rem;
+      gap: .25rem;
     }
   }
 }
