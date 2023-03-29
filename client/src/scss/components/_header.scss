@@ -14,7 +14,6 @@
     font-size: 1.75rem;
     border-radius: 50%;
     border: solid $primaryDark 1px;
-    // padding: 0.25rem 0.75rem;
     background-color: transparent;
     cursor: pointer;
     font-weight: 300;
@@ -46,7 +45,6 @@
     font-size: clamp(2rem, calc(2rem + 2vw), 3.5rem);
     font-weight: 900;
     color: $primaryDark !important;
-    text-shadow: 1px 1px $whiteLight;
     transition: opacity 0.3s ease-in-out;
 
     &:hover {
@@ -82,7 +80,7 @@
 
     &[type="button"] {
       padding: 1rem;
-      gap: .25rem;
+      gap: 0.25rem;
     }
   }
 }
