@@ -41,6 +41,7 @@ const AuthProvider = props => {
       return { error };
     } else {
       setAuth(data);
+      return {};
     }
   };
 

@@ -10,12 +10,9 @@
   margin: 1rem auto 2.5rem;
   min-height: 75vh;
   border-radius: 0.25rem;
-  background-color: rgba(25, 25, 25, 0.1);
   color: $black;
-
-  &.add {
-    box-shadow: 0 0 3px $blackLight;
-  }
+  background-color: rgba(255, 255, 255, .9);
+  border: solid $black;
 
   &-error {
     color: $error;

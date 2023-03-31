@@ -5,9 +5,9 @@ import { mergeProps, createSignal, onMount, batch } from "solid-js";
 import { useAuthContext } from "~/context/auth";
 
 const initialErrors = {
-  error: null,
-  usernameError: null,
-  passwordError: null,
+  error: "",
+  usernameError: "",
+  passwordError: "",
 };
 
 const AuthBox = props => {
